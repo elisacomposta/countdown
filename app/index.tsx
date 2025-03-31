@@ -10,17 +10,20 @@ export default function Index() {
 
   return (
     <SafeAreaView style={styles.screen}>
-      <ScrollView>
-        <View style={styles.eventContainer}>
-          <Card title="Event 1" time={100} color={colors.celeste} />
-        </View>
-        <View style={styles.eventContainer}>
-          <Card title="Event 2" time={200} color={colors.celeste} />
-        </View>
+      <View style={styles.header}>
+        <TouchableOpacity style={styles.createButton} onPress={() => console.log("Create new")}>
+          <Text style={styles.createText}>+</Text>
+        </TouchableOpacity>
+      </View>
+      <ScrollView contentContainerStyle={styles.eventsContainer}>
+        <Card title="Event 1" time={100} color={colors.celeste} />
+        <Card title="Event 2" time={200} color={colors.celeste} />
       </ScrollView>
-      <TouchableOpacity style={styles.archiveButton} onPress={() => console.log("Archive")}>
-        <Text style={styles.archieveText}>{t('archive')}</Text>
-      </TouchableOpacity>
-    </SafeAreaView>
+      <View style={styles.footer}>
+        <TouchableOpacity style={styles.archiveButton} onPress={() => console.log("Archive")}>
+          <Text style={styles.archieveText}>{t('archive')}</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView >
   );
 }

@@ -6,11 +6,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    width: "93%",
+    width: "90%",
     height: 120,
     padding: 30,
     borderRadius: 16,
-    margin: 5,
+    marginBottom: 10,
   },
   title: {
     fontSize: 30,

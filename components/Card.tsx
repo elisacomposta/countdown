@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text } from "react-native";
 import { useTranslation } from "react-i18next";
 import styles from "./Card.styles";
 
