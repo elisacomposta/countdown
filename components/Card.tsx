@@ -1,12 +1,15 @@
 import { View, Text, StyleSheet } from "react-native";
+import { useTranslation } from "react-i18next";
 
 interface cardProps { title: string, time: number, color: string };
 
-export function Card({ title: title, time: time, color: color }: cardProps) {
+export function Card({ title, time, color }: cardProps) {
+  const { t } = useTranslation();
+
   return (
     <View style={[styles.card, { backgroundColor: color }]}>
       <Text style={[styles.defaultText, styles.title]} adjustsFontSizeToFit numberOfLines={4} minimumFontScale={0.5}>{title}</Text>
-      <Text style={[styles.defaultText, styles.time]} adjustsFontSizeToFit numberOfLines={4}>{time} days</Text>
+      <Text style={[styles.defaultText, styles.time]} adjustsFontSizeToFit numberOfLines={4}>{t('days', { count: time })}</Text>
     </View>
   );
 }

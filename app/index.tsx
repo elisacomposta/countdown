@@ -1,6 +1,7 @@
 import { View, StyleSheet } from "react-native";
 import { Card } from "@/components/Card";
 import { colors } from "@/utils/constants";
+import '@/i18n';
 
 export default function Index() {
   return (
