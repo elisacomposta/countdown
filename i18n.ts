@@ -1,11 +1,11 @@
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import RNLanguageDetector from '@os-team/i18next-react-native-language-detector';
+import { getLocales } from 'expo-localization';
 
-const language = 'en';
+const locales = getLocales();
+const language = locales[0]["languageCode"] || 'en';
 
 i18next
-    //.use(RNLanguageDetector)
     .use(initReactI18next)
     .init({
         fallbackLng: 'en',
