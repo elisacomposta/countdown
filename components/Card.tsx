@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 import { useTranslation } from "react-i18next";
-import { styles } from "./Card.styles";
+import styles from "./Card.styles";
 
 interface cardProps { title: string, time: number, color: string };
 

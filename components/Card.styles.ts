@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   card: {
     display: "flex",
     flexDirection: "row",
@@ -24,3 +24,5 @@ export const styles = StyleSheet.create({
     textAlign: "right",
   }
 });
+
+export default styles;
