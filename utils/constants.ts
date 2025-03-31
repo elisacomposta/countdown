@@ -1,5 +1,8 @@
 export const colors = {
-    celeste: "#89aed6",
+    transparent: "transparent",
     white: "#fff",
     black: "#000",
+    grey: "#555555",
+    lightgrey: "#f8f8f8",
+    celeste: "#89aed6",
 }

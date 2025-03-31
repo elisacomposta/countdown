@@ -16,12 +16,14 @@ i18next
                 translation: {
                     days_one: "{{count}} day",
                     days_other: "{{count}} days",
+                    archive: "Archive",
                 }
             },
             it: {
                 translation: {
                     days_one: "{{count}} giorno",
                     days_other: "{{count}} giorni",
+                    archive: "Archivio",
                 }
             },
         }
