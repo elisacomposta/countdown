@@ -2,26 +2,6 @@ import { StyleSheet } from "react-native"
 import { colors } from "@/utils/constants";
 
 const styles = StyleSheet.create({
-    screen: {
-        flex: 1,
-    },
-    header: {
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        margin: 20,
-    },
-    eventsContainer: {
-        display: "flex",
-        alignItems: "center",
-    },
-    footer: {
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        borderBlockColor: colors.celeste,
-    },
     headerTitle: {
         fontSize: 25,
         fontWeight: "bold",
