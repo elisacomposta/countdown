@@ -17,6 +17,7 @@ i18next
                     days_one: "{{count}} day",
                     days_other: "{{count}} days",
                     archive: "Archive",
+                    my_events: "My events",
                 }
             },
             it: {
@@ -24,6 +25,7 @@ i18next
                     days_one: "{{count}} giorno",
                     days_other: "{{count}} giorni",
                     archive: "Archivio",
+                    my_events: "I miei eventi",
                 }
             },
         }

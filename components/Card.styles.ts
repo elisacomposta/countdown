@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
     padding: 30,
     borderRadius: 16,
     marginBottom: 10,
+    boxShadow: "0px 0px 3px rgba(0, 0, 0, 0.25)",
   },
   title: {
     fontSize: 30,

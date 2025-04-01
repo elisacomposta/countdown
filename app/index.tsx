@@ -11,6 +11,7 @@ export default function Index() {
   return (
     <SafeAreaView style={styles.screen}>
       <View style={styles.header}>
+        <Text style={styles.headerTitle}>{t('my_events')}</Text>
         <TouchableOpacity style={styles.createButton} onPress={() => console.log("Create new")}>
           <Text style={styles.createText}>+</Text>
         </TouchableOpacity>
