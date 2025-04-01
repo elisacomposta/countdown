@@ -1,6 +1,7 @@
 import { SafeAreaView, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { Card } from "@/components/Card";
+import { OptionButton } from "@/components/OptionButton";
 import { colors } from "@/utils/constants";
 import styles from "./styles/index.styles";
 import '@/i18n';
@@ -12,9 +13,10 @@ export default function Index() {
     <SafeAreaView style={styles.screen}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>{t('my_events')}</Text>
-        <TouchableOpacity style={styles.createButton} onPress={() => console.log("Create new")}>
-          <Text style={styles.createText}>+</Text>
-        </TouchableOpacity>
+        <View style={styles.optionsContainer}>
+          <OptionButton symbol="⮃" />
+          <OptionButton symbol="+" />
+        </View>
       </View>
       <ScrollView contentContainerStyle={styles.eventsContainer}>
         <Card title="Event 1" time={100} color={colors.celeste} />

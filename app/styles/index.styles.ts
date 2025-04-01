@@ -27,20 +27,10 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         color: colors.darkgrey,
     },
-    createButton: {
+    optionsContainer: {
         display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        borderRadius: 35,
-        height: 50,
-        width: 50,
-        backgroundColor: colors.white,
-        boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.25)",
-    },
-    createText: {
-        fontSize: 30,
-        lineHeight: 30,
-        color: colors.darkgrey,
+        flexDirection: "row",
+        gap: 10
     },
     archiveButton: {
         display: "flex",
