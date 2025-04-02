@@ -4,7 +4,7 @@ import { colors } from '@/utils/constants';
 const styles = StyleSheet.create({
     fieldName: {
         fontSize: 20,
-        color: colors.darkgrey,
+        color: colors.antracite,
         fontWeight: 'bold',
     },
     fieldContainer: {
@@ -20,11 +20,11 @@ const styles = StyleSheet.create({
         fontSize: 16,
         borderRadius: 16,
         minWidth: '80%',
-        color: colors.darkgrey,
+        color: colors.antracite,
     },
     colorBox: {
-        width: 33,
-        height: 33,
+        width: 40,
+        height: 40,
         borderRadius: 8,
         boxShadow: "0px 0px 1px rgba(0, 0, 0, 0.25)",
     }

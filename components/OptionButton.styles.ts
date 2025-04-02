@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     createText: {
         fontSize: 30,
         lineHeight: 30,
-        color: colors.darkgrey,
+        color: colors.antracite,
     },
 })
 

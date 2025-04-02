@@ -25,7 +25,7 @@ const commonStyles = StyleSheet.create({
     headerTitle: {
         fontSize: 25,
         fontWeight: "bold",
-        color: colors.darkgrey,
+        color: colors.antracite,
     },
 });
 
