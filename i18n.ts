@@ -1,9 +1,6 @@
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import { getLocales } from 'expo-localization';
-
-const locales = getLocales();
-const language = locales[0]["languageCode"] || 'en';
+import { language } from './utils/locale';
 
 i18next
     .use(initReactI18next)
@@ -19,6 +16,10 @@ i18next
                     archive: "Archive",
                     my_events: "My events",
                     new_event: "New event",
+                    title: "Title",
+                    event_name: "Event name",
+                    date: "Date",
+                    color: "Color",
                 }
             },
             it: {
@@ -28,6 +29,10 @@ i18next
                     archive: "Archivio",
                     my_events: "I miei eventi",
                     new_event: "Nuovo evento",
+                    title: "Titolo",
+                    event_name: "Nome evento",
+                    date: "Data",
+                    color: "Colore",
                 }
             },
         }
