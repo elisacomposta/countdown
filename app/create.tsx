@@ -1,10 +1,12 @@
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { View } from 'react-native';
+import { Text, TextInput, View } from 'react-native';
+import { OptionButton } from '@/components/OptionButton';
+import { useTranslation } from 'react-i18next';
+import { locale } from '@/utils/locale'
+import { colors } from '@/utils/constants';
+import DateTimePicker from "@react-native-community/datetimepicker";
 import styles from './styles/create.styles';
 import commonStyles from './styles/common.styles';
-import { OptionButton } from '@/components/OptionButton';
-import { Text } from 'react-native';
-import { useTranslation } from 'react-i18next';
 
 export default function CreateEvent() {
     const { t } = useTranslation();
@@ -13,12 +15,23 @@ export default function CreateEvent() {
         <SafeAreaView style={commonStyles.screen}>
             <View style={commonStyles.header}>
                 <OptionButton action="back" />
-                <Text style={[commonStyles.headerTitle]}>{t('new_event')}</Text>
+                <Text style={commonStyles.headerTitle}>{t('new_event')}</Text>
                 <OptionButton action="save" />
             </View>
-            <View style={commonStyles.main}>
-                <Text>Create Event</Text>
+            <View style={[commonStyles.main, { padding: 10 }]}>
+                <View style={styles.fieldContainer}>
+                    <Text style={styles.fieldName}>{t('title')}</Text>
+                    <TextInput style={styles.textInputBox} placeholder={t('event_name')}></TextInput>
+                </View>
+                <View style={styles.fieldContainer}>
+                    <Text style={styles.fieldName}>{t('date')}</Text>
+                    <DateTimePicker value={new Date()} locale={locale} display='compact' />
+                </View>
+                <View style={styles.fieldContainer}>
+                    <Text style={styles.fieldName}>{t('color')}</Text>
+                    <View style={[styles.colorBox, { backgroundColor: colors.celeste }]} />
+                </View>
             </View>
-        </SafeAreaView>
+        </SafeAreaView >
     );
 }

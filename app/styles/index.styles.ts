@@ -14,7 +14,6 @@ const styles = StyleSheet.create({
         height: 35,
         width: "50%",
         padding: 10,
-        margin: 10,
         borderRadius: 35,
         backgroundColor: colors.transparent,
         boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.25)",

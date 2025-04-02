@@ -13,7 +13,8 @@ const commonStyles = StyleSheet.create({
         margin: 20,
     },
     main: {
-        alignItems: "center",
+        margin: 20,
+        gap: 20,
     },
     footer: {
         display: "flex",
