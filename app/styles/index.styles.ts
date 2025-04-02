@@ -2,11 +2,6 @@ import { StyleSheet } from "react-native"
 import { colors } from "@/utils/constants";
 
 const styles = StyleSheet.create({
-    headerTitle: {
-        fontSize: 25,
-        fontWeight: "bold",
-        color: colors.darkgrey,
-    },
     optionsContainer: {
         display: "flex",
         flexDirection: "row",

@@ -21,6 +21,11 @@ const commonStyles = StyleSheet.create({
         alignItems: "center",
         borderBlockColor: colors.celeste,
     },
+    headerTitle: {
+        fontSize: 25,
+        fontWeight: "bold",
+        color: colors.darkgrey,
+    },
 });
 
 export default commonStyles;

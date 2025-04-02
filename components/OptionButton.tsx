@@ -2,7 +2,7 @@ import { Text, TouchableOpacity } from "react-native";
 import styles from "./OptionButton.styles";
 import { useRouter } from "expo-router";
 
-type action_type = "create" | "sort" | "back";
+type action_type = "create" | "sort" | "back" | "save";
 
 export function OptionButton({ action }: { action: action_type }) {
     const router = useRouter();
@@ -21,6 +21,10 @@ export function OptionButton({ action }: { action: action_type }) {
         case "back":
             symbol = "←";
             onPress = () => router.back();
+            break;
+        case "save":
+            symbol = "✓";
+            onPress = () => console.log("Saved");
             break;
     }
 

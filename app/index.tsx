@@ -13,7 +13,7 @@ export default function Index() {
   return (
     <SafeAreaView style={commonStyles.screen}>
       <View style={commonStyles.header}>
-        <Text style={styles.headerTitle}>{t('my_events')}</Text>
+        <Text style={commonStyles.headerTitle}>{t('my_events')}</Text>
         <View style={styles.optionsContainer}>
           <OptionButton action="sort" />
           <OptionButton action="create" />
