@@ -17,6 +17,9 @@ const styles = StyleSheet.create({
         lineHeight: 30,
         color: colors.antracite,
     },
+    disabledText: {
+        color: colors.lightgrey,
+    }
 })
 
 export default styles;

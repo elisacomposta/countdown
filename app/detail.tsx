@@ -13,9 +13,9 @@ export default function DetailPage() {
     return (
         <SafeAreaView style={commonStyles.screen}>
             <View style={commonStyles.header}>
-                <OptionButton action="back" />
+                <OptionButton actionType="back" />
                 <Text style={commonStyles.headerTitle}>{t('event_details')}</Text>
-                <OptionButton action="other" />
+                <OptionButton actionType="other" />
             </View>
             <View style={[commonStyles.main, styles.main]}>
                 <View style={[styles.card, { backgroundColor: color }]}>

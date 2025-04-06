@@ -35,8 +35,8 @@ export default function Index() {
       <View style={commonStyles.header}>
         <Text style={commonStyles.headerTitle}>{t('my_events')}</Text>
         <View style={styles.optionsContainer}>
-          <OptionButton action="sort" />
-          <OptionButton action="create" />
+          <OptionButton actionType="sort" />
+          <OptionButton actionType="create" />
         </View>
       </View>
       <ScrollView contentContainerStyle={commonStyles.main}>

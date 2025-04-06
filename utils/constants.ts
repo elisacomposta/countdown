@@ -24,3 +24,5 @@ export const palette = [
     colors.celeste,
     colors.lavanda,
 ];
+
+export const EVENT_PREFIX = "event";

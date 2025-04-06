@@ -4,12 +4,11 @@ import { useRouter } from "expo-router";
 
 type action_type = "create" | "sort" | "back" | "save" | "other";
 
-export function OptionButton({ action }: { action: action_type }) {
+export function OptionButton({ actionType, disabled = false, onPress }: { actionType: action_type, disabled?: boolean, onPress?: () => void }) {
     const router = useRouter();
 
     let symbol = "";
-    let onPress = () => console.log("Option button pressed");
-    switch (action) {
+    switch (actionType) {
         case "create":
             symbol = "+";
             onPress = () => router.push("/create");
@@ -24,7 +23,6 @@ export function OptionButton({ action }: { action: action_type }) {
             break;
         case "save":
             symbol = "✓";
-            onPress = () => console.log("Saved");
             break;
         case "other":
             symbol = "···";
@@ -33,8 +31,8 @@ export function OptionButton({ action }: { action: action_type }) {
     }
 
     return (
-        <TouchableOpacity style={styles.optionButton} onPress={onPress}>
-            <Text style={styles.createText}>{symbol}</Text>
+        <TouchableOpacity style={styles.optionButton} onPress={onPress} disabled={disabled}>
+            <Text style={[styles.createText, disabled ? styles.disabledText : null]}>{symbol}</Text>
         </TouchableOpacity>
     );
 }
