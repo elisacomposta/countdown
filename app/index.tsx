@@ -1,5 +1,6 @@
 import { SafeAreaView, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
+import { useCallback, useState } from "react";
 import { Card } from "@/components/Card";
 import { OptionButton } from "@/components/OptionButton";
 import { colors } from "@/utils/constants";
@@ -7,28 +8,24 @@ import { Event } from "@/types/interfaces";
 import styles from "./styles/index.styles";
 import commonStyles from "./styles/common.styles";
 import '@/i18n';
+import { freeAllStorage, getEvents } from "@/utils/storage";
+import { useFocusEffect } from "expo-router";
 
 export default function Index() {
+  const [events, setEvents] = useState<Event[]>([])
   const { t } = useTranslation();
+  //freeAllStorage();
 
-  const events: Event[] = [
-    {
-      id: "1",
-      title: "Event 1",
-      color: colors.celeste,
-      endDate: new Date(2025, 3, 7),
-      creationDate: new Date(),
-      lastModifiedDate: new Date(),
-    },
-    {
-      id: "2",
-      title: "Event 2",
-      color: colors.celeste,
-      endDate: new Date(2025, 6, 19),
-      creationDate: new Date(),
-      lastModifiedDate: new Date(),
-    },
-  ]
+  useFocusEffect(
+    useCallback(() => {
+      const fetchEvents = async () => {
+        const fetchedEvents: Event[] = await getEvents();
+        setEvents(fetchedEvents);
+      }
+
+      fetchEvents();
+    }, [])
+  );
 
   return (
     <SafeAreaView style={commonStyles.screen}>
@@ -40,8 +37,11 @@ export default function Index() {
         </View>
       </View>
       <ScrollView contentContainerStyle={commonStyles.main}>
-        <Card event={events[0]} />
-        <Card event={events[1]} />
+        {events.map((event, index) => {
+          return (
+            <Card key={index} event={event} />
+          )
+        })}
       </ScrollView>
       <View style={commonStyles.footer}>
         <TouchableOpacity style={styles.archiveButton} onPress={() => console.log("Archive")}>

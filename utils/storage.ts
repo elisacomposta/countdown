@@ -12,15 +12,36 @@ export const storeData = async (data: Event, prefix: string) => {
     }
 };
 
-export const getData = async (id: string, prefix: string = '') => {
+export const getEventById = async (id: string): Promise<Event> => {
     try {
-        const jsonValue = await AsyncStorage.getItem(`${prefix}_${id}`);
-        return jsonValue != null ? JSON.parse(jsonValue) : null;
+        const jsonValue = await AsyncStorage.getItem(`event_${id}`);
+        return jsonValue != null ? JSON.parse(jsonValue) : {} as Event;
     } catch (e) {
-        console.error("Error getting data " + `${prefix}_${id}`, e);
-        return null;
+        console.error("Error getting data " + `event_${id}`, e);
+        return {} as Event;
     }
 };
+
+export const getEvents = async (): Promise<Event[]> => {
+    try {
+        const keys = await AsyncStorage.getAllKeys();
+        const filteredKeys = keys.filter(key => key.startsWith('event_'));
+        const values = await AsyncStorage.multiGet(filteredKeys);
+        const dataToReturn = values.map(([key, val]) => {
+            const parsed = JSON.parse(val || '{}');
+            return {
+                ...parsed,
+                endDate: new Date(parsed.endDate),
+                creationDate: new Date(parsed.creationDate),
+                lastModifiedDate: new Date(parsed.lastModifiedDate),
+            } as Event;
+        })
+        return dataToReturn;
+    } catch (e) {
+        console.error("Error getting data by prefix", e);
+        return [];
+    }
+}
 
 export const freeAllStorage = async () => {
     try {
