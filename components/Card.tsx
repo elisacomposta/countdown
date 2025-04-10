@@ -15,12 +15,7 @@ export function Card({ event }: { event: Event }) {
   const remainingDays = countdownDuration > 0 ? Math.floor(countdownDuration / (1000 * 60 * 60 * 24)) + 1 : 0;
 
   const handlePress = () => {
-    const state = {
-      title: title,
-      time: remainingDays,
-      color: color
-    };
-    router.push({ pathname: "/detail", params: state });
+    router.push({ pathname: "/detail", params: { event: JSON.stringify(event) } });
   }
 
   return (
