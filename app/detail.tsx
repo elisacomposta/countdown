@@ -7,21 +7,14 @@ import { Event } from '@/types/interfaces';
 import { locale } from '@/utils/locale'
 import commonStyles from './styles/common.styles';
 import styles from './styles/detail.styles';
+import { computeRemainingDays, deserializeEventString } from '@/utils/event';
 
 export default function DetailPage() {
     const { event: eventStr } = useLocalSearchParams();
     const { t } = useTranslation();
 
-    const parsedEvent = JSON.parse(eventStr as string) as Event;
-    const event = {
-        ...parsedEvent,
-        endDate: new Date(parsedEvent.endDate),
-        creationDate: new Date(parsedEvent.creationDate),
-        lastModifiedDate: new Date(parsedEvent.lastModifiedDate),
-    }
-
-    const countdownDuration = event.endDate.getTime() - new Date().getTime()
-    const remainingDays = countdownDuration > 0 ? Math.floor(countdownDuration / (1000 * 60 * 60 * 24)) + 1 : 0;
+    const event = deserializeEventString(eventStr as string)
+    const remainingDays = computeRemainingDays(event)
 
     return (
         <SafeAreaView style={commonStyles.screen}>
