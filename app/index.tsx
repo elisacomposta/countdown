@@ -3,30 +3,32 @@ import { useTranslation } from "react-i18next";
 import { useCallback, useState } from "react";
 import { Card } from "@/components/Card";
 import { OptionButton } from "@/components/OptionButton";
-import { colors } from "@/utils/constants";
 import { Event } from "@/types/interfaces";
 import styles from "./styles/index.styles";
 import commonStyles from "./styles/common.styles";
 import '@/i18n';
-import { freeAllStorage, getEvents } from "@/utils/storage";
+import { getEvents } from "@/utils/storage";
 import { useFocusEffect } from "expo-router";
 
 export default function Index() {
   const [events, setEvents] = useState<Event[]>([])
   const { t } = useTranslation();
-  //freeAllStorage();
+
+  const fetchEvents = async () => {
+    const fetchedEvents: Event[] = await getEvents();
+    fetchedEvents.sort((a, b) => a.endDate.getTime() - b.endDate.getTime());
+    setEvents(fetchedEvents);
+  }
 
   useFocusEffect(
     useCallback(() => {
-      const fetchEvents = async () => {
-        const fetchedEvents: Event[] = await getEvents();
-        fetchedEvents.sort((a, b) => a.endDate.getTime() - b.endDate.getTime());
-        setEvents(fetchedEvents);
-      }
-
       fetchEvents();
     }, [])
   );
+
+  const handleDeleteEvent = () => {
+    fetchEvents();
+  }
 
   return (
     <SafeAreaView style={commonStyles.screen}>
@@ -40,7 +42,7 @@ export default function Index() {
       <ScrollView contentContainerStyle={commonStyles.main}>
         {events.map((event, index) => {
           return (
-            <Card key={index} event={event} />
+            <Card key={index} event={event} onDelete={handleDeleteEvent} />
           )
         })}
       </ScrollView>

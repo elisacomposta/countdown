@@ -1,11 +1,14 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { Vibration, View, Text, TouchableOpacity } from "react-native";
 import { useTranslation } from "react-i18next";
 import styles from "./Card.styles";
 import { useRouter } from "expo-router";
 import { Event } from "@/types/interfaces";
 import { computeRemainingDays } from "@/utils/event";
+import { useEventActions } from "@/hooks/useEventActions";
+import * as Haptics from 'expo-haptics';
 
-export function Card({ event }: { event: Event }) {
+export function Card({ event, onDelete }: { event: Event, onDelete?: () => void }) {
+  const { handleEventOptions } = useEventActions(event, onDelete);
   const { t } = useTranslation();
   const router = useRouter();
 
@@ -15,8 +18,13 @@ export function Card({ event }: { event: Event }) {
     router.push({ pathname: "/detail", params: { event: JSON.stringify(event) } });
   }
 
+  const handleLongPress = () => {
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+    handleEventOptions();
+  }
+
   return (
-    <TouchableOpacity onPress={handlePress}>
+    <TouchableOpacity onPress={handlePress} onLongPress={handleLongPress}>
       <View style={[styles.card, { backgroundColor: event.color }]}>
         <Text style={styles.title} adjustsFontSizeToFit numberOfLines={4} minimumFontScale={0.5}>{event.title}</Text>
         <Text style={styles.time} adjustsFontSizeToFit numberOfLines={4}>{remainingDays} {t('days', { count: remainingDays })}</Text>

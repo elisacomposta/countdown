@@ -15,14 +15,14 @@ export default function DetailPage() {
     const { t } = useTranslation();
     const event: Event = deserializeEventString(eventStr as string)
     const remainingDays = computeRemainingDays(event)
-    const { onOtherPress } = useEventActions(event)
+    const { handleEventOptions } = useEventActions(event)
 
     return (
         <SafeAreaView style={commonStyles.screen}>
             <View style={commonStyles.header}>
                 <OptionButton actionType="back" />
                 <Text style={commonStyles.headerTitle}>{t('event_details')}</Text>
-                <OptionButton actionType="other" onPress={onOtherPress} />
+                <OptionButton actionType="other" onPress={handleEventOptions} />
             </View>
             <View style={[commonStyles.main, styles.main]}>
                 <View style={[styles.card, { backgroundColor: event.color }]}>
