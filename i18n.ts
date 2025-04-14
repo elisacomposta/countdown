@@ -26,6 +26,9 @@ i18next
                     cancel: 'Cancel',
                     delete_alert_title: "Delete this event?",
                     delete_alert_message: "This action is permanent.",
+                    discard_alert_title: "Discard changes?",
+                    discard_alert_message: "All unsaved changes will be lost.",
+                    discard: "Discard",
                 }
             },
             it: {
@@ -45,6 +48,9 @@ i18next
                     cancel: 'Annulla',
                     delete_alert_title: "Eliminare questo evento?",
                     delete_alert_message: "Questa azione è irreversibile.",
+                    discard_alert_title: "Eliminare le modifiche?",
+                    discard_alert_message: "Tutte le modifiche non salvate andranno perse.",
+                    discard: "Elimina",
                 }
             },
         }

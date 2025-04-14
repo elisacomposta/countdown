@@ -19,7 +19,9 @@ export function OptionButton({ actionType, disabled = false, onPress }: { action
             break;
         case "back":
             symbol = "←";
-            onPress = () => router.back();
+            if (!onPress) {
+                onPress = () => router.back();
+            }
             break;
         case "save":
             symbol = "✓";

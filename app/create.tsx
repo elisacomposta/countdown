@@ -1,5 +1,5 @@
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { OptionButton } from '@/components/OptionButton';
 import { ColorPicker } from '@/components/ColorPicker';
 import { useTranslation } from 'react-i18next';
@@ -18,9 +18,9 @@ export default function CreateEvent() {
     const { event: eventStr } = useLocalSearchParams();
     const currentEvent: Event = eventStr ? JSON.parse(eventStr as string) : null;
     const { t } = useTranslation();
-    const [name, setName] = useState(currentEvent ? currentEvent.title : '');
-    const [date, setDate] = useState(currentEvent ? new Date(currentEvent.endDate) : new Date());
-    const [selectedColor, setSelectedColor] = useState(currentEvent ? currentEvent.color : DEFAULT_EVENT_COLOR);
+    const [name, setName] = useState(currentEvent?.title || '');
+    const [date, setDate] = useState(currentEvent ? new Date(currentEvent?.endDate) : new Date());
+    const [selectedColor, setSelectedColor] = useState(currentEvent?.color || DEFAULT_EVENT_COLOR);
     const [isColorPickerOpen, setColorPickerOpen] = useState(false);
 
     const handleNameChange = (text: string) => {
@@ -61,10 +61,30 @@ export default function CreateEvent() {
         router.push('/');
     }
 
+    const handleOnBackPress = () => {
+        const areSameDay = (d1: Date, d2: Date) =>
+            d1.getFullYear() === d2.getFullYear() &&
+            d1.getMonth() === d2.getMonth() &&
+            d1.getDate() === d2.getDate();
+
+        const hasChanges = currentEvent ?
+            (name !== currentEvent.title || selectedColor !== currentEvent.color || !areSameDay(date, new Date(currentEvent.endDate))) :
+            (name !== '' || selectedColor !== DEFAULT_EVENT_COLOR || !areSameDay(date, new Date()));
+
+        if (hasChanges) {
+            Alert.alert(t('discard_alert_title'), t('discard_alert_message'), [
+                { text: t('cancel'), style: "cancel" },
+                { text: t('discard'), style: "destructive", onPress: () => router.back() }
+            ], { cancelable: true })
+        } else {
+            router.back();
+        }
+    }
+
     return (
         <SafeAreaView style={commonStyles.screen}>
             <View style={commonStyles.header}>
-                <OptionButton actionType="back" />
+                <OptionButton actionType="back" onPress={handleOnBackPress} />
                 <Text style={commonStyles.headerTitle}>{t('new_event')}</Text>
                 <OptionButton actionType="save" onPress={handleSavePress} disabled={name.trim() === ''} />
             </View>
