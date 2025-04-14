@@ -8,7 +8,7 @@ export function ColorPicker({ selectedColor, onColorChange }: { selectedColor: s
     return (
         <View style={styles.colorPickerContainer}>
             {palette.map((color) =>
-                <ScalePressable onPress={() => onColorChange(color)} key={color}>
+                <ScalePressable onPress={() => onColorChange(color)} key={color} disableFeedback={true}>
                     <View style={[
                         styles.colorBox,
                         { backgroundColor: color },

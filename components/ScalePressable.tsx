@@ -1,20 +1,24 @@
 import { Pressable } from 'react-native';
 import * as Haptics from 'expo-haptics';
 
-export function ScalePressable({ children, onPress, onLongPress, style, disabled }: { children: React.ReactNode, onPress?: () => void, onLongPress?: () => void, style?: any, disabled?: boolean }) {
+export function ScalePressable({ children, onPress, onLongPress, style, disabled, disableFeedback }: { children: React.ReactNode, onPress?: () => void, onLongPress?: () => void, style?: any, disabled?: boolean, disableFeedback?: boolean }) {
 
     const handleOnPress = () => {
         if (onPress) {
             onPress();
-            Haptics.impactAsync();
+            if (!disableFeedback) {
+                Haptics.impactAsync();
+            }
         }
     }
 
     const handleOnLongPress = () => {
         if (onLongPress) {
             onLongPress();
+            if (!disableFeedback) {
+                Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+            }
         }
-        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     }
 
     return (
