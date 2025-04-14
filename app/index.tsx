@@ -20,6 +20,7 @@ export default function Index() {
     useCallback(() => {
       const fetchEvents = async () => {
         const fetchedEvents: Event[] = await getEvents();
+        fetchedEvents.sort((a, b) => a.endDate.getTime() - b.endDate.getTime());
         setEvents(fetchedEvents);
       }
 
