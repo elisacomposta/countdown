@@ -4,21 +4,23 @@ import { OptionButton } from '@/components/OptionButton';
 import { ColorPicker } from '@/components/ColorPicker';
 import { useTranslation } from 'react-i18next';
 import { locale } from '@/utils/locale'
-import { colors, EVENT_PREFIX } from '@/utils/constants';
+import { DEFAULT_EVENT_COLOR, EVENT_PREFIX } from '@/utils/constants';
 import DateTimePicker, { DateTimePickerEvent } from "@react-native-community/datetimepicker";
 import styles from './styles/create.styles';
 import commonStyles from './styles/common.styles';
 import { useState } from 'react';
-import { router } from 'expo-router';
-import { storeData } from '@/utils/storage';
+import { router, useLocalSearchParams } from 'expo-router';
+import { storeData, updateEventById } from '@/utils/storage';
 import { Event } from '@/types/interfaces';
 import uuid from 'react-native-uuid';
 
 export default function CreateEvent() {
+    const { event: eventStr } = useLocalSearchParams();
+    const currentEvent: Event = eventStr ? JSON.parse(eventStr as string) : null;
     const { t } = useTranslation();
-    const [name, setName] = useState('');
-    const [date, setDate] = useState(new Date());
-    const [selectedColor, setSelectedColor] = useState(colors.celeste)
+    const [name, setName] = useState(currentEvent ? currentEvent.title : '');
+    const [date, setDate] = useState(currentEvent ? new Date(currentEvent.endDate) : new Date());
+    const [selectedColor, setSelectedColor] = useState(currentEvent ? currentEvent.color : DEFAULT_EVENT_COLOR);
     const [isColorPickerOpen, setColorPickerOpen] = useState(false);
 
     const handleNameChange = (text: string) => {
@@ -49,8 +51,14 @@ export default function CreateEvent() {
             creationDate: new Date(),
             lastModifiedDate: new Date(),
         };
-        storeData(newEvent, EVENT_PREFIX)
-        router.back()
+
+        if (currentEvent) {
+            updateEventById(currentEvent.id, newEvent)
+        }
+        else {
+            storeData(newEvent, EVENT_PREFIX)
+        }
+        router.push('/');
     }
 
     return (
@@ -63,7 +71,7 @@ export default function CreateEvent() {
             <View style={[commonStyles.main, { padding: 10 }]}>
                 <View style={styles.fieldContainer}>
                     <Text style={styles.fieldName}>{t('title')}</Text>
-                    <TextInput style={styles.textInputBox} placeholder={t('event_name')} onChangeText={handleNameChange}></TextInput>
+                    <TextInput style={styles.textInputBox} placeholder={t('event_name')} onChangeText={handleNameChange}>{name}</TextInput>
                 </View>
                 <View style={styles.fieldContainer}>
                     <Text style={styles.fieldName}>{t('date')}</Text>

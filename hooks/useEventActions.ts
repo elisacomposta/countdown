@@ -33,7 +33,7 @@ export const useEventActions = (event: Event) => {
                     break;
                 }
                 case 1: {
-                    console.log("Edit event")
+                    router.push({ pathname: "/create", params: { event: JSON.stringify(event) } });
                     break;
                 }
             }

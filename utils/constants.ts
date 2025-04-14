@@ -25,4 +25,5 @@ export const palette = [
     colors.lavanda,
 ];
 
+export const DEFAULT_EVENT_COLOR = colors.celeste;
 export const EVENT_PREFIX = "event";
