@@ -30,6 +30,10 @@ i18next
                     discard_alert_title: "Discard changes?",
                     discard_alert_message: "All unsaved changes will be lost.",
                     discard: "Discard",
+                    sort_by: "Choose sorting criteria",
+                    remaining_days: "Remaining days",
+                    creation_date: "Creation date",
+                    last_edit_date: "Last edit",
                 }
             },
             it: {
@@ -53,6 +57,10 @@ i18next
                     discard_alert_title: "Eliminare le modifiche?",
                     discard_alert_message: "Tutte le modifiche non salvate andranno perse.",
                     discard: "Elimina",
+                    sort_by: "Scegli come ordinare gli eventi",
+                    remaining_days: "Giorni rimanenti",
+                    creation_date: "Data di creazione",
+                    last_edit_date: "Ultima modifica",
                 }
             },
         }

@@ -17,7 +17,6 @@ export function OptionButton({ actionType, disabled = false, onPress }: { action
             break;
         case "sort":
             symbol = "⮃";
-            onPress = () => printAllStorage();
             break;
         case "back":
             symbol = "←";

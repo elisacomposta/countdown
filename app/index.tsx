@@ -10,10 +10,12 @@ import commonStyles from "./styles/common.styles";
 import '@/i18n';
 import { getEvents } from "@/utils/storage";
 import { useFocusEffect } from "expo-router";
+import { useSortActions } from "@/hooks/useSortActions";
 
 export default function Index() {
   const [events, setEvents] = useState<Event[]>([])
   const { t } = useTranslation();
+  const { handleSortActoons } = useSortActions();
 
   const fetchEvents = async () => {
     const fetchedEvents: Event[] = await getEvents();
@@ -36,7 +38,7 @@ export default function Index() {
       <View style={commonStyles.header}>
         <Text style={commonStyles.headerTitle}>{t('my_events')}</Text>
         <View style={styles.optionsContainer}>
-          <OptionButton actionType="sort" />
+          <OptionButton actionType="sort" onPress={handleSortActoons} />
           <OptionButton actionType="create" />
         </View>
       </View>
