@@ -86,7 +86,7 @@ export default function CreateEvent() {
         <SafeAreaView style={commonStyles.screen}>
             <View style={commonStyles.header}>
                 <OptionButton actionType="back" onPress={handleOnBackPress} />
-                <Text style={commonStyles.headerTitle}>{t('new_event')}</Text>
+                <Text style={commonStyles.headerTitle}>{currentEvent ? t('edit_event') : t('new_event')}</Text>
                 <OptionButton actionType="save" onPress={handleSavePress} disabled={name.trim() === ''} />
             </View>
             <View style={[commonStyles.main, { padding: 10 }]}>
