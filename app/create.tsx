@@ -1,5 +1,6 @@
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Text, TextInput, View } from 'react-native';
+import { ScalePressable } from '@/components/ScalePressable';
 import { OptionButton } from '@/components/OptionButton';
 import { ColorPicker } from '@/components/ColorPicker';
 import { useTranslation } from 'react-i18next';
@@ -99,9 +100,9 @@ export default function CreateEvent() {
                 </View>
                 <View style={styles.fieldContainer}>
                     <Text style={styles.fieldName}>{t('color')}</Text>
-                    <TouchableOpacity onPress={handleColorBoxPress}>
+                    <ScalePressable onPress={handleColorBoxPress}>
                         <View style={[styles.colorBox, { backgroundColor: selectedColor }]} />
-                    </TouchableOpacity>
+                    </ScalePressable>
                 </View>
                 {isColorPickerOpen && <ColorPicker selectedColor={selectedColor} onColorChange={handleColorChange} />}
             </View>

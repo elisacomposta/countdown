@@ -1,11 +1,11 @@
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text } from 'react-native';
+import { ScalePressable } from './ScalePressable';
 import { Event } from '@/types/interfaces';
 import { locale } from '@/utils/locale';
 import styles from './CardDetail.styles';
 import { computeRemainingDays } from '@/utils/event';
 import { useTranslation } from 'react-i18next';
 import { useEventActions } from '@/hooks/useEventActions';
-import * as Haptics from 'expo-haptics';
 
 export function CardDetail({ event }: { event: Event }) {
     const { t } = useTranslation();
@@ -13,12 +13,11 @@ export function CardDetail({ event }: { event: Event }) {
     const remainingDays = computeRemainingDays(event)
 
     const handleLongPress = () => {
-        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
         handleEventOptions();
     }
 
     return (
-        <TouchableOpacity onLongPress={handleLongPress}>
+        <ScalePressable onLongPress={handleLongPress}>
             <View style={[styles.card, { backgroundColor: event.color }]}>
                 <Text style={styles.cardText}>{event.title}</Text>
                 <View>
@@ -35,6 +34,6 @@ export function CardDetail({ event }: { event: Event }) {
                     </Text>
                 </View>
             </View>
-        </TouchableOpacity>
+        </ScalePressable>
     )
 }

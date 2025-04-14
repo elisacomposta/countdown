@@ -1,4 +1,5 @@
-import { TouchableOpacity, View } from 'react-native';
+import { View } from 'react-native';
+import { ScalePressable } from './ScalePressable';
 import styles from './ColorPicker.styles';
 import { palette } from '@/utils/constants';
 
@@ -7,13 +8,13 @@ export function ColorPicker({ selectedColor, onColorChange }: { selectedColor: s
     return (
         <View style={styles.colorPickerContainer}>
             {palette.map((color) =>
-                <TouchableOpacity onPress={() => onColorChange(color)} key={color}>
+                <ScalePressable onPress={() => onColorChange(color)} key={color}>
                     <View style={[
                         styles.colorBox,
                         { backgroundColor: color },
                         color === selectedColor && styles.selectedColorBox
                     ]} />
-                </TouchableOpacity>
+                </ScalePressable>
             )}
         </View >
     )

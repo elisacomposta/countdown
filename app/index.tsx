@@ -1,4 +1,5 @@
-import { SafeAreaView, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { SafeAreaView, ScrollView, Text, View } from "react-native";
+import { ScalePressable } from "@/components/ScalePressable";
 import { useTranslation } from "react-i18next";
 import { useCallback, useState } from "react";
 import { Card } from "@/components/Card";
@@ -47,9 +48,9 @@ export default function Index() {
         })}
       </ScrollView>
       <View style={commonStyles.footer}>
-        <TouchableOpacity style={styles.archiveButton} onPress={() => console.log("Archive")}>
+        <ScalePressable style={styles.archiveButton} onPress={() => console.log("Archive")}>
           <Text style={styles.archieveText}>{t('archive')}</Text>
-        </TouchableOpacity>
+        </ScalePressable>
       </View>
     </SafeAreaView >
   );

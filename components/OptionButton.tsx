@@ -1,6 +1,8 @@
-import { Text, TouchableOpacity } from "react-native";
+import { Text } from "react-native";
+import { ScalePressable } from "./ScalePressable";
 import styles from "./OptionButton.styles";
 import { useRouter } from "expo-router";
+import { printAllStorage } from "@/utils/storage";
 
 type action_type = "create" | "sort" | "back" | "save" | "other";
 
@@ -15,7 +17,7 @@ export function OptionButton({ actionType, disabled = false, onPress }: { action
             break;
         case "sort":
             symbol = "⮃";
-            onPress = () => console.log("Sort events");
+            onPress = () => printAllStorage();
             break;
         case "back":
             symbol = "←";
@@ -32,9 +34,9 @@ export function OptionButton({ actionType, disabled = false, onPress }: { action
     }
 
     return (
-        <TouchableOpacity style={styles.optionButton} onPress={onPress} disabled={disabled}>
+        <ScalePressable style={styles.optionButton} onPress={onPress} disabled={disabled}>
             <Text style={[styles.createText, disabled ? styles.disabledText : null]}>{symbol}</Text>
-        </TouchableOpacity>
+        </ScalePressable>
     );
 }
 
