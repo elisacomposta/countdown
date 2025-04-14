@@ -27,7 +27,13 @@ export const updateEventById = async (id: string, newEvent: Event): Promise<bool
 export const getEventById = async (id: string): Promise<Event> => {
     try {
         const jsonValue = await AsyncStorage.getItem(`event_${id}`);
-        return jsonValue != null ? JSON.parse(jsonValue) : {} as Event;
+        const parsed = JSON.parse(jsonValue || '{}');
+        return {
+            ...parsed,
+            endDate: new Date(parsed.endDate),
+            creationDate: new Date(parsed.creationDate),
+            lastModifiedDate: new Date(parsed.lastModifiedDate),
+        } as Event;
     } catch (e) {
         console.error("Error getting data " + `event_${id}`, e);
         return {} as Event;

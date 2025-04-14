@@ -58,7 +58,7 @@ export default function CreateEvent() {
         else {
             storeData(newEvent, EVENT_PREFIX)
         }
-        router.push('/');
+        router.back();
     }
 
     const handleOnBackPress = () => {

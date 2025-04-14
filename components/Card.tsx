@@ -1,4 +1,4 @@
-import { Vibration, View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { useTranslation } from "react-i18next";
 import styles from "./Card.styles";
 import { useRouter } from "expo-router";
@@ -15,7 +15,7 @@ export function Card({ event, onDelete }: { event: Event, onDelete?: () => void 
   const remainingDays = computeRemainingDays(event);
 
   const handlePress = () => {
-    router.push({ pathname: "/detail", params: { event: JSON.stringify(event) } });
+    router.push({ pathname: "/detail", params: { eventStr: JSON.stringify(event) } });
   }
 
   const handleLongPress = () => {
