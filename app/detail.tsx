@@ -8,20 +8,21 @@ import { locale } from '@/utils/locale'
 import commonStyles from './styles/common.styles';
 import styles from './styles/detail.styles';
 import { computeRemainingDays, deserializeEventString } from '@/utils/event';
+import { useEventActions } from '@/hooks/useEventActions';
 
 export default function DetailPage() {
     const { event: eventStr } = useLocalSearchParams();
     const { t } = useTranslation();
-
-    const event = deserializeEventString(eventStr as string)
+    const event: Event = deserializeEventString(eventStr as string)
     const remainingDays = computeRemainingDays(event)
+    const { onOtherPress } = useEventActions(event)
 
     return (
         <SafeAreaView style={commonStyles.screen}>
             <View style={commonStyles.header}>
                 <OptionButton actionType="back" />
                 <Text style={commonStyles.headerTitle}>{t('event_details')}</Text>
-                <OptionButton actionType="other" />
+                <OptionButton actionType="other" onPress={onOtherPress} />
             </View>
             <View style={[commonStyles.main, styles.main]}>
                 <View style={[styles.card, { backgroundColor: event.color }]}>

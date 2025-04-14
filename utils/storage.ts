@@ -22,6 +22,16 @@ export const getEventById = async (id: string): Promise<Event> => {
     }
 };
 
+export const removeEventById = async (id: string): Promise<boolean> => {
+    try {
+        await AsyncStorage.removeItem(`event_${id}`);
+        return true;
+    } catch (e) {
+        console.error("Error removing data " + `event_${id}`, e);
+        return false;
+    }
+}
+
 export const getEvents = async (): Promise<Event[]> => {
     try {
         const keys = await AsyncStorage.getAllKeys();

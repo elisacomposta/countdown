@@ -21,6 +21,11 @@ i18next
                     date: "Date",
                     color: "Color",
                     event_details: "Event details",
+                    delete: 'Delete',
+                    edit: 'Edit',
+                    cancel: 'Cancel',
+                    delete_alert_title: "Delete this event?",
+                    delete_alert_message: "This action is permanent.",
                 }
             },
             it: {
@@ -35,6 +40,11 @@ i18next
                     date: "Data",
                     color: "Colore",
                     event_details: "Dettagli evento",
+                    delete: 'Elimina',
+                    edit: 'Modifica',
+                    cancel: 'Annulla',
+                    delete_alert_title: "Eliminare questo evento?",
+                    delete_alert_message: "Questa azione è irreversibile.",
                 }
             },
         }

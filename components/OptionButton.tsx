@@ -26,7 +26,6 @@ export function OptionButton({ actionType, disabled = false, onPress }: { action
             break;
         case "other":
             symbol = "···";
-            onPress = () => console.log("Action");
             break;
     }
 
