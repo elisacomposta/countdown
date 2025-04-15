@@ -14,6 +14,7 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { storeData, updateEventById } from '@/utils/storage';
 import { Event } from '@/types/interfaces';
 import uuid from 'react-native-uuid';
+import { ActionType } from '@/types/interfaces';
 
 export default function CreateEvent() {
     const { event: eventStr } = useLocalSearchParams();
@@ -54,7 +55,11 @@ export default function CreateEvent() {
         };
 
         if (currentEvent) {
-            updateEventById(currentEvent.id, newEvent)
+            updateEventById({
+                ...newEvent,
+                id: currentEvent.id,
+                creationDate: currentEvent.creationDate
+            });
         }
         else {
             storeData(newEvent, EVENT_PREFIX)
@@ -85,9 +90,9 @@ export default function CreateEvent() {
     return (
         <SafeAreaView style={commonStyles.screen}>
             <View style={commonStyles.header}>
-                <OptionButton actionType="back" onPress={handleOnBackPress} />
+                <OptionButton actionType={ActionType.back} onPress={handleOnBackPress} />
                 <Text style={commonStyles.headerTitle}>{currentEvent ? t('edit_event') : t('new_event')}</Text>
-                <OptionButton actionType="save" onPress={handleSavePress} disabled={name.trim() === ''} />
+                <OptionButton actionType={ActionType.save} onPress={handleSavePress} disabled={name.trim() === ''} />
             </View>
             <View style={[commonStyles.main, { padding: 10 }]}>
                 <View style={styles.fieldContainer}>

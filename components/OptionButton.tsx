@@ -2,32 +2,30 @@ import { Text } from "react-native";
 import { ScalePressable } from "./ScalePressable";
 import styles from "./OptionButton.styles";
 import { useRouter } from "expo-router";
-import { printAllStorage } from "@/utils/storage";
+import { ActionType } from "@/types/interfaces";
 
-type action_type = "create" | "sort" | "back" | "save" | "other";
-
-export function OptionButton({ actionType, disabled = false, onPress }: { actionType: action_type, disabled?: boolean, onPress?: () => void }) {
+export function OptionButton({ actionType, disabled = false, onPress }: { actionType: ActionType, disabled?: boolean, onPress?: () => void }) {
     const router = useRouter();
 
     let symbol = "";
     switch (actionType) {
-        case "create":
+        case ActionType.create:
             symbol = "+";
             onPress = () => router.push("/create");
             break;
-        case "sort":
+        case ActionType.sort:
             symbol = "⮃";
             break;
-        case "back":
+        case ActionType.back:
             symbol = "←";
             if (!onPress) {
                 onPress = () => router.back();
             }
             break;
-        case "save":
+        case ActionType.save:
             symbol = "✓";
             break;
-        case "other":
+        case ActionType.other:
             symbol = "···";
             break;
     }

@@ -3,7 +3,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { useLocalSearchParams } from 'expo-router'
 import { OptionButton } from '@/components/OptionButton';
 import { useTranslation } from 'react-i18next';
-import { Event } from '@/types/interfaces';
+import { ActionType, Event } from '@/types/interfaces';
 import commonStyles from './styles/common.styles';
 import styles from './styles/detail.styles';
 import { deserializeEventString } from '@/utils/event';
@@ -34,9 +34,9 @@ export default function DetailPage() {
     return (
         <SafeAreaView style={commonStyles.screen}>
             <View style={commonStyles.header}>
-                <OptionButton actionType="back" />
+                <OptionButton actionType={ActionType.back} />
                 <Text style={commonStyles.headerTitle}>{t('event_details')}</Text>
-                <OptionButton actionType="other" onPress={handleEventOptions} />
+                <OptionButton actionType={ActionType.other} onPress={handleEventOptions} />
             </View>
             <View style={[commonStyles.main, styles.main]}>
                 <CardDetail event={currentEvent} />
