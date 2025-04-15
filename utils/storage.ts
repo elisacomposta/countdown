@@ -12,14 +12,14 @@ export const storeData = async (data: Event, prefix: string) => {
     }
 };
 
-export const updateEventById = async (id: string, newEvent: Event): Promise<boolean> => {
+export const updateEventById = async (event: Event): Promise<boolean> => {
     try {
-        const jsonValue = JSON.stringify({ ...newEvent, id, lastModifiedDate: new Date() });
-        await AsyncStorage.setItem(`event_${id}`, jsonValue);
+        const jsonValue = JSON.stringify({ ...event, lastModifiedDate: new Date() });
+        await AsyncStorage.setItem(`event_${event.id}`, jsonValue);
         return true;
     }
     catch (e) {
-        console.error("Error updating data " + `event_${id}`, e);
+        console.error("Error updating data " + `event_${event.id}`, e);
         return false;
     }
 }
