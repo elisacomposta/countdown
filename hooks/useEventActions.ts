@@ -11,14 +11,14 @@ export const useEventActions = (event: Event, onActionCompleted?: () => void) =>
     const router = useRouter();
 
     const handleEventOptions = () => {
-        const options = [t('delete'), t('edit'), t('archive_action'), t('cancel')]
+        const archieveOptionText = event.isArchived ? t('unarchive') : t('archive_action')
+        const options = [t('delete'), t('edit'), archieveOptionText, t('cancel')]
         const destructiveButtonIndex = 0
         const cancelButtonIndex = 3
 
         const handleDelete = () => {
             const deleteEvent = async () => {
                 await removeEventById(event.id)
-                router.push('/')
                 onActionCompleted && onActionCompleted()
             }
             Alert.alert(t('delete_alert_title'), t('delete_alert_message'), [
@@ -42,7 +42,7 @@ export const useEventActions = (event: Event, onActionCompleted?: () => void) =>
                     break;
                 }
                 case 2: {
-                    updateEvent({ ...event, isArchived: true });
+                    updateEvent({ ...event, isArchived: !event.isArchived });
                     onActionCompleted && onActionCompleted()
                     break;
                 }

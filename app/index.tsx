@@ -12,12 +12,14 @@ import { getEvents } from "@/utils/storage";
 import { useFocusEffect } from "expo-router";
 import { useSortActions } from "@/hooks/useSortActions";
 import { ActionType, SortType } from "@/types/interfaces";
+import { useRouter } from "expo-router";
 
 export default function Index() {
   const [events, setEvents] = useState<Event[]>([])
   const { t } = useTranslation();
   const [sortType, setSortType] = useState<SortType>(SortType.end_date);
   const { handleSortActions } = useSortActions(setSortType);
+  const router = useRouter();
 
   const fetchEvents = async () => {
     const fetchedEvents: Event[] = await getEvents();
@@ -62,7 +64,7 @@ export default function Index() {
         })}
       </ScrollView>
       <View style={commonStyles.footer}>
-        <ScalePressable style={styles.archiveButton} onPress={() => console.log("Archive")}>
+        <ScalePressable style={styles.archiveButton} onPress={() => router.push('/archive')}>
           <Text style={styles.archieveText}>{t('archive')}</Text>
         </ScalePressable>
       </View>

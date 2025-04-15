@@ -60,6 +60,7 @@ export default function CreateEvent() {
                 ...newEvent,
                 id: currentEvent.id,
                 creationDate: currentEvent.creationDate,
+                isArchived: currentEvent.isArchived
             });
         }
         else {

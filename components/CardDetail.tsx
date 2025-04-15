@@ -6,10 +6,12 @@ import styles from './CardDetail.styles';
 import { computeRemainingDays } from '@/utils/event';
 import { useTranslation } from 'react-i18next';
 import { useEventActions } from '@/hooks/useEventActions';
+import { useRouter } from 'expo-router';
 
 export function CardDetail({ event }: { event: Event }) {
     const { t } = useTranslation();
-    const { handleEventOptions } = useEventActions(event)
+    const router = useRouter()
+    const { handleEventOptions } = useEventActions(event, () => { router.push('/') })
     const remainingDays = computeRemainingDays(event)
 
     const handleLongPress = () => {
