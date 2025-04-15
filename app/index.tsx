@@ -34,7 +34,7 @@ export default function Index() {
         break;
       }
       case SortType.last_edit_date: {
-        fetchedEvents.sort((a, b) => a.lastModifiedDate.getTime() - b.lastModifiedDate.getTime());
+        fetchedEvents.sort((a, b) => b.lastModifiedDate.getTime() - a.lastModifiedDate.getTime());
         break;
       }
     }
