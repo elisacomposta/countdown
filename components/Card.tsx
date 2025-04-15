@@ -7,8 +7,8 @@ import { Event } from "@/types/interfaces";
 import { computeRemainingDays } from "@/utils/event";
 import { useEventActions } from "@/hooks/useEventActions";
 
-export function Card({ event, onDelete }: { event: Event, onDelete?: () => void }) {
-  const { handleEventOptions } = useEventActions(event, onDelete);
+export function Card({ event, onActionCompleted }: { event: Event, onActionCompleted?: () => void }) {
+  const { handleEventOptions } = useEventActions(event, onActionCompleted);
   const { t } = useTranslation();
   const router = useRouter();
 

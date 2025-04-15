@@ -35,7 +35,8 @@ export default function Index() {
         break;
       }
     }
-    setEvents(fetchedEvents);
+    const filteredEvents = fetchedEvents.filter(event => !event.isArchived);
+    setEvents(filteredEvents);
   }
 
   useFocusEffect(
@@ -56,7 +57,7 @@ export default function Index() {
       <ScrollView contentContainerStyle={commonStyles.main}>
         {events.map((event, index) => {
           return (
-            <Card key={index} event={event} onDelete={fetchEvents} />
+            <Card key={index} event={event} onActionCompleted={fetchEvents} />
           )
         })}
       </ScrollView>

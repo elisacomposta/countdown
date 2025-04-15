@@ -1,34 +1,30 @@
 import { useTranslation } from 'react-i18next';
 import { Alert } from 'react-native';
 import { useActionSheet } from '@expo/react-native-action-sheet';
-import { removeEventById } from '@/utils/storage';
+import { removeEventById, updateEvent } from '@/utils/storage';
 import { useRouter } from 'expo-router';
 import { Event } from '@/types/interfaces';
 
-export const useEventActions = (event: Event, onDelete?: () => void) => {
+export const useEventActions = (event: Event, onActionCompleted?: () => void) => {
     const { t } = useTranslation();
     const { showActionSheetWithOptions } = useActionSheet();
     const router = useRouter();
 
     const handleEventOptions = () => {
-        const options = [t('delete'), t('edit'), t('cancel')]
+        const options = [t('delete'), t('edit'), t('archive_action'), t('cancel')]
         const destructiveButtonIndex = 0
-        const cancelButtonIndex = 2
+        const cancelButtonIndex = 3
 
         const handleDelete = () => {
             const deleteEvent = async () => {
                 await removeEventById(event.id)
                 router.push('/')
-                onDelete && onDelete()
+                onActionCompleted && onActionCompleted()
             }
             Alert.alert(t('delete_alert_title'), t('delete_alert_message'), [
                 { text: t('cancel'), style: "cancel" },
                 { text: t('delete'), style: "destructive", onPress: deleteEvent }
             ], { cancelable: true })
-        }
-
-        const handleEdit = () => {
-            router.push({ pathname: "/create", params: { event: JSON.stringify(event) } });
         }
 
         showActionSheetWithOptions({
@@ -42,7 +38,12 @@ export const useEventActions = (event: Event, onDelete?: () => void) => {
                     break;
                 }
                 case 1: {
-                    handleEdit();
+                    router.push({ pathname: "/create", params: { event: JSON.stringify(event) } });
+                    break;
+                }
+                case 2: {
+                    updateEvent({ ...event, isArchived: true });
+                    onActionCompleted && onActionCompleted()
                     break;
                 }
             }

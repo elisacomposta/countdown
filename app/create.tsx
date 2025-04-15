@@ -11,7 +11,7 @@ import styles from './styles/create.styles';
 import commonStyles from './styles/common.styles';
 import { useState } from 'react';
 import { router, useLocalSearchParams } from 'expo-router';
-import { storeData, updateEventById } from '@/utils/storage';
+import { storeData, updateEvent } from '@/utils/storage';
 import { Event } from '@/types/interfaces';
 import uuid from 'react-native-uuid';
 import { ActionType } from '@/types/interfaces';
@@ -52,13 +52,14 @@ export default function CreateEvent() {
             endDate: date,
             creationDate: new Date(),
             lastModifiedDate: new Date(),
+            isArchived: false
         };
 
         if (currentEvent) {
-            updateEventById({
+            updateEvent({
                 ...newEvent,
                 id: currentEvent.id,
-                creationDate: currentEvent.creationDate
+                creationDate: currentEvent.creationDate,
             });
         }
         else {

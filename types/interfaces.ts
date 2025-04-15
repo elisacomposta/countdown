@@ -5,6 +5,7 @@ export interface Event {
     endDate: Date,
     creationDate: Date,
     lastModifiedDate: Date,
+    isArchived: boolean,
 };
 
 export enum SortType {
