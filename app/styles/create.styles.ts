@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         minWidth: '80%',
         color: colors.antracite,
+        flex: 1
     },
     colorBox: {
         width: 40,

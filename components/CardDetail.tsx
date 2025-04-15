@@ -21,7 +21,7 @@ export function CardDetail({ event }: { event: Event }) {
     return (
         <ScalePressable onLongPress={handleLongPress}>
             <View style={[styles.card, { backgroundColor: event.color }]}>
-                <Text style={styles.cardText}>{event.title}</Text>
+                <Text style={styles.cardText} adjustsFontSizeToFit numberOfLines={4} minimumFontScale={0.5}>{event.title}</Text>
                 <View>
                     <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "baseline" }}>
                         <Text style={styles.cardTime}>{remainingDays}</Text>
