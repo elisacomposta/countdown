@@ -8,7 +8,7 @@ export default function RootLayout() {
   return (
     <ActionSheetProvider>
       <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="index" options={{ headerShown: false, animation: 'slide_from_left' }} />
         <Stack.Screen name="create" options={{ headerShown: false }} />
         <Stack.Screen name="detail" options={{ headerShown: false }} />
         <Stack.Screen name="archive" options={{ headerShown: false }} />
