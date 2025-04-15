@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     },
     cardText: {
         color: colors.white,
-        fontSize: 50,
+        fontSize: 45,
         textAlign: "center",
     },
     cardTime: {
