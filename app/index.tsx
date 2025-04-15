@@ -20,6 +20,7 @@ export default function Index() {
   const [sortType, setSortType] = useState<SortType>(SortType.end_date);
   const { handleSortActions } = useSortActions(setSortType);
   const router = useRouter();
+  const [enableArchive, setEnableArchive] = useState(false);
 
   const fetchEvents = async () => {
     const fetchedEvents: Event[] = await getEvents();
@@ -38,6 +39,7 @@ export default function Index() {
       }
     }
     const filteredEvents = fetchedEvents.filter(event => !event.isArchived);
+    setEnableArchive(filteredEvents.length != fetchedEvents.length);
     setEvents(filteredEvents);
   }
 
@@ -63,11 +65,12 @@ export default function Index() {
           )
         })}
       </ScrollView>
-      <View style={commonStyles.footer}>
-        <ScalePressable style={styles.archiveButton} onPress={() => router.push('/archive')}>
-          <Text style={styles.archieveText}>{t('archive')}</Text>
-        </ScalePressable>
-      </View>
+      {enableArchive && (
+        <View style={commonStyles.footer}>
+          <ScalePressable style={styles.archiveButton} onPress={() => router.push('/archive')}>
+            <Text style={styles.archieveText}>{t('archive')}</Text>
+          </ScalePressable>
+        </View>)}
     </SafeAreaView >
   );
 }
