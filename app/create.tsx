@@ -26,7 +26,7 @@ export default function CreateEvent() {
     const [isColorPickerOpen, setColorPickerOpen] = useState(false);
 
     const handleNameChange = (text: string) => {
-        setName(text);
+        setName(text.trim());
     }
 
     const handleDateChange = (event: DateTimePickerEvent, selectedDate?: Date) => {

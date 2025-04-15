@@ -10,17 +10,17 @@ const styles = StyleSheet.create({
     padding: 30,
     borderRadius: 16,
     boxShadow: "0px 0px 3px rgba(0, 0, 0, 0.25)",
+    gap: 10
   },
   title: {
-    fontSize: 30,
+    fontSize: 28,
     color: "#fff",
     flex: 1,
     fontWeight: "bold",
   },
   time: {
-    fontSize: 30,
+    fontSize: 28,
     color: "#fff",
-    flex: 1,
     textAlign: "right",
   }
 });

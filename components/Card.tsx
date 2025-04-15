@@ -25,8 +25,8 @@ export function Card({ event, onActionCompleted }: { event: Event, onActionCompl
   return (
     <ScalePressable onPress={handlePress} onLongPress={handleLongPress}>
       <View style={[styles.card, { backgroundColor: event.color }]}>
-        <Text style={styles.title} adjustsFontSizeToFit numberOfLines={4} minimumFontScale={0.5}>{event.title}</Text>
-        <Text style={styles.time} adjustsFontSizeToFit numberOfLines={4}>{remainingDays} {t('days', { count: remainingDays })}</Text>
+        <Text style={styles.title} adjustsFontSizeToFit numberOfLines={3} minimumFontScale={0.5}>{event.title}</Text>
+        <Text style={styles.time} adjustsFontSizeToFit numberOfLines={3}>{remainingDays} {t('days', { count: remainingDays })}</Text>
       </View>
     </ScalePressable>
   );
